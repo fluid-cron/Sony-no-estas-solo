@@ -8,33 +8,38 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package NoEstasSolo
+ * @package Mutual_eventos
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses no_estas_solo_header_style()
+ * @uses mutual_eventos_header_style()
  */
-function no_estas_solo_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'no_estas_solo_custom_header_args', array(
+function mutual_eventos_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'mutual_eventos_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'no_estas_solo_header_style',
+		'wp-head-callback'       => 'mutual_eventos_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'no_estas_solo_custom_header_setup' );
+add_action( 'after_setup_theme', 'mutual_eventos_custom_header_setup' );
 
-if ( ! function_exists( 'no_estas_solo_header_style' ) ) :
+// Alter meta tag to prevent all zoom
+add_filter( 'wpex_meta_viewport', function() {
+	return '<meta name="viewport" content="2" />';
+});
+
+if ( ! function_exists( 'mutual_eventos_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog.
  *
- * @see no_estas_solo_custom_header_setup().
+ * @see mutual_eventos_custom_header_setup().
  */
-function no_estas_solo_header_style() {
+function mutual_eventos_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	/*

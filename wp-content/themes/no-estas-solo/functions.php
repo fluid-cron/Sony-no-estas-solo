@@ -1,28 +1,20 @@
 <?php
 /**
- * NoEstasSolo functions and definitions
+ * Mutual eventos functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package NoEstasSolo
+ * @package Mutual_eventos
  */
-
-if ( ! function_exists( 'no_estas_solo_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function no_estas_solo_setup() {
+if ( ! function_exists( 'mutual_eventos_setup' ) ) :
+function mutual_eventos_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on NoEstasSolo, use a find and replace
-	 * to change 'no-estas-solo' to the name of your theme in all the template files.
+	 * If you're building a theme based on Mutual eventos, use a find and replace
+	 * to change 'mutual-eventos' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'no-estas-solo', get_template_directory() . '/languages' );
+	//load_theme_textdomain( 'mutual-eventos', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -43,33 +35,33 @@ function no_estas_solo_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'no-estas-solo' ),
+	/*register_nav_menus( array(
+		'menu-1' => esc_html__( 'Primary', 'mutual-eventos' ),
 	) );
-
+	*/
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_support( 'html5', array(
+	/*add_theme_support( 'html5', array(
 		'search-form',
 		'comment-form',
 		'comment-list',
 		'gallery',
 		'caption',
-	) );
+	) );*/
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'no_estas_solo_custom_background_args', array(
+	/*add_theme_support( 'custom-background', apply_filters( 'mutual_eventos_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );
+	) ) );*/
 
 	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+	//add_theme_support( 'customize-selective-refresh-widgets' );
 }
 endif;
-add_action( 'after_setup_theme', 'no_estas_solo_setup' );
+add_action( 'after_setup_theme', 'mutual_eventos_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -78,66 +70,55 @@ add_action( 'after_setup_theme', 'no_estas_solo_setup' );
  *
  * @global int $content_width
  */
-function no_estas_solo_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'no_estas_solo_content_width', 640 );
+/*function mutual_eventos_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'mutual_eventos_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'no_estas_solo_content_width', 0 );
-
+add_action( 'after_setup_theme', 'mutual_eventos_content_width', 0 );
+*/
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function no_estas_solo_widgets_init() {
+/*function mutual_eventos_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'no-estas-solo' ),
+		'name'          => esc_html__( 'Sidebar', 'mutual-eventos' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'no-estas-solo' ),
+		'description'   => esc_html__( 'Add widgets here.', 'mutual-eventos' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'no_estas_solo_widgets_init' );
-
-/**
- * Enqueue scripts and styles.
- */
-function no_estas_solo_scripts() {
-	wp_enqueue_style( 'no-estas-solo-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'no-estas-solo-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'no-estas-solo-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'no_estas_solo_scripts' );
+add_action( 'widgets_init', 'mutual_eventos_widgets_init' );
+*/
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+//require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+//require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+//require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
+//require get_template_directory() . '/inc/jetpack.php';
+show_admin_bar(false);
+require get_template_directory() . '/inc/custom-script-css.php';
+require get_template_directory() . '/inc/custom-post.php';
+require get_template_directory() . '/inc/custom-functions.php';
