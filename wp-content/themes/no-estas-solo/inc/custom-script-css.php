@@ -9,12 +9,13 @@ function script_enqueue() {
    wp_register_script( "events_script", get_template_directory_uri().'/js/scripts.js');
    wp_localize_script( 'events_script', 'ajax', array( 'url' => admin_url( 'admin-ajax.php' ),'url_base' => get_site_url().'/', 'theme_path' => get_template_directory_uri()."/")); 
    //wp_register_script( "events_bootstrap", get_template_directory_uri().'/assets/js/bootstrap.min.js');
+   wp_register_script( "magnificpopup_slick", get_template_directory_uri().'/js/jquery.magnific-popup.js');
 
-   wp_enqueue_script( 'jquery' );
+   //wp_enqueue_script( 'jquery' );
    wp_enqueue_script( 'validate_script' );
    wp_enqueue_script( 'googlemap_script' );
    //wp_enqueue_script( 'rut_script' );
-   //wp_enqueue_script( 'events_bootstrap' );
+   wp_enqueue_script( 'magnificpopup_slick' );
    wp_enqueue_script( 'events_script' );
 }
 

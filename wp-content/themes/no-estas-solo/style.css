@@ -22,8 +22,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 
 .acf-map {
 	width: 100%;
-	height: 400px;
-	border: #ccc solid 1px;
+	height: 600px;
 }
 
 /* fixes potential theme css conflict */
@@ -31,3 +30,24 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
    max-width: inherit !important;
 }
 
+.error {
+	border: solid 1px red !important;
+}
+
+.enviar-btn{
+    display: block;
+}
+
+.alert-custom {
+	float: right;
+	display: none;
+}
+.white-popup-block {
+    background: #F4F4F4 !important;
+    padding: 20px 30px;
+    text-align: left;
+    max-width: 650px;
+    margin: 40px auto;
+    position: relative;
+    border-radius: 5px;
+}

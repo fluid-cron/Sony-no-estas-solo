@@ -1,9 +1,9 @@
 <?php 
-/*add_action( 'init', 'create_post_type' );
+add_action( 'init', 'create_post_type' );
 function create_post_type() {
     
     $labels = array(
-        'name' => __( 'Eventos' ),
+        'name' => __( 'Ganadores' ),
         'add_new'               => __( 'Agregar nuevo' )
     );
     
@@ -14,18 +14,17 @@ function create_post_type() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'eventos' ),
+        'rewrite'            => array( 'slug' => 'ganadores' ),
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'supports'           => array( 'title', 'editor', 'excerpt', 'revisions' ),
-        'icon_url'      => 'dashicons-images-alt2'
+        'supports'           => array( 'title' ),
+        'icon_url'           => 'dashicons-images-alt2'
     );
     
-    register_post_type('Eventos',$args);
+    register_post_type('Ganadores',$args);
 }
-*/
 
 if( function_exists('acf_add_options_page') && function_exists('acf_add_options_sub_page') ) {
 
