@@ -1,6 +1,6 @@
 $('#example').countdown({
-	date: '5/24/2017 23:59:59',
-	offset: -8,
+	date: '4/12/2017 09:00:00',
+	offset: 0,
 	day: 'Día',
 	days: 'Días',
 	hour:'Hrs',

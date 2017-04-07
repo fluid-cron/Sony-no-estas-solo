@@ -33,7 +33,7 @@ if( function_exists('acf_add_options_page') && function_exists('acf_add_options_
         'menu_slug'     => 'configuracion',
         'capability'    => 'edit_posts',
         'position'      => '30',
-        'redirect'      => 'mapa'
+        'redirect'      => 'general'
     ));
 
     /*$option_page_configuracion_theme = acf_add_options_page(array(
@@ -45,17 +45,24 @@ if( function_exists('acf_add_options_page') && function_exists('acf_add_options_
     ));*/
 
     acf_add_options_sub_page(array(
+        'page_title'  => 'General',
+        'menu_slug'   => 'general',
+        'parent_slug' => $option_page_configuracion_theme['menu_slug']                
+    ));      
+
+    acf_add_options_sub_page(array(
         'page_title'  => 'Mapa',
         'menu_slug'   => 'mapa',
         'parent_slug' => $option_page_configuracion_theme['menu_slug']                
-    ));     
+    ));              
 
+/*
     acf_add_options_sub_page(array(
         'page_title'  => 'Footer',
         'menu_slug'   => 'footer',
         'parent_slug' => $option_page_configuracion_theme['menu_slug']                
     ));         
-
+*/
     /*acf_add_options_sub_page(array(
         'page_title'  => 'Home',
         'menu_slug'   => 'configuracion-theme-home',

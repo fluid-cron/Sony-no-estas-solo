@@ -11,13 +11,13 @@ get_header('home'); ?>
     <div class="box-content-time animated fadeIn">
        <div class="box-center-time">       
         <ul id="example">
-			<li><span class="days number-time">03</span><p class="days_text info-time red">Días</p></li>
+			<li><span class="days number-time">00</span><p class="days_text info-time red">Días</p></li>
 			<li class="seperator number-time">:</li>
-			<li><span class="hours number-time">16</span><p class="hours_text info-time green">Hrs</p></li>
+			<li><span class="hours number-time">00</span><p class="hours_text info-time green">Hrs</p></li>
 			<li class="seperator number-time">:</li>
-			<li><span class="minutes number-time">60</span><p class="minutes_text info-time green">Min</p></li>
+			<li><span class="minutes number-time">00</span><p class="minutes_text info-time green">Min</p></li>
 			<li class="seperator number-time">:</li>
-			<li><span class="seconds number-time">05</span><p class="seconds_text info-time green">Seg</p></li>
+			<li><span class="seconds number-time">00</span><p class="seconds_text info-time green">Seg</p></li>
          </ul>	         
        </div>
     </div>           

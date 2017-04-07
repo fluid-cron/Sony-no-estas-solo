@@ -292,11 +292,9 @@ function add_marker( $marker, map ) {
         map         : map,
         animation   : google.maps.Animation.DROP,
         icon        : {
-            url : ajax.theme_path+'img/icon-pointer-map.png',
-            anchor: new google.maps.Point(0,70)
-        },
-        optimized   : false,
-        zIndex      : 200
+            url    : ajax.theme_path+'img/icon-pointer-map.png',
+            anchor : new google.maps.Point(0,70)
+        }
     });
 
     // add to array
