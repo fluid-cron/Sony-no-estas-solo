@@ -6,11 +6,14 @@ function revisarCodigos() {
 
 	global $wpdb;
 
-	$nombre = sanitize_text_field($_POST["nombre"]);
-	$email  = sanitize_text_field($_POST["email"]);
-	$codigo = sanitize_text_field($_POST["codigo"]);
+	$nombre   = sanitize_text_field($_POST["nombre"]);
+	$email    = sanitize_text_field($_POST["email"]);
+	$codigo   = sanitize_text_field($_POST["codigo"]);
+	$apellido = sanitize_text_field($_POST["apellido"]);
+	$rut      = sanitize_text_field($_POST["rut"]);
+	$telefono = sanitize_text_field($_POST["telefono"]);
 
-	if( $nombre!="" && $email!="" && $codigo!="" ) {
+	if( $nombre!="" && $email!="" && $codigo!="" && $apellido!="" && $rut!="" && $telefono!="" ) {
 
 		$query = "SELECT codigo FROM {$wpdb->prefix}codigos WHERE codigo='$codigo' ";
 		$codigos = $wpdb->get_results($query);
@@ -30,19 +33,31 @@ function revisarCodigos() {
 			$codigos_cantidad = count($codigos);
 
 			if( $codigos_cantidad>0 ) {
+
 				//codigo ingresado ya fue utilizado
 				echo 2;
+
 			}else{
+
+				//FUIRY5XA
+				//WV1YAR5D
+				//GS2P3UCD
 
 				//codigo no utilizado lo ingresamos en el sistema
 				$wpdb->insert(
 					$wpdb->prefix.'formulario',
 					array(
-						'nombre' => $nombre,				
-						'email'  => $email,				
-						'codigo' => $codigo	
+						'nombre'   => $nombre,				
+						'email'    => $email,				
+						'codigo'   => $codigo,
+						'apellido' => $apellido,
+						'rut'      => $rut,
+						'telefono' => $telefono
 					),
 					array(
+						'%s',
+						'%s',
+						'%s',
 						'%s',
 						'%s',
 						'%s'
@@ -59,9 +74,37 @@ function revisarCodigos() {
 						'%s',
 						'%s'
 					)
-				);	
+				);
 
-				echo 1;			
+				if( $codigo=='FUIRY5XA' ||  $codigo=='WV1YAR5D' ||  $codigo=='GS2P3UCD' ) {
+
+					//ganador
+					$url = get_template_directory_uri().'/mail/';
+
+					$body    = file_get_contents(get_template_directory_uri().'/mail/index.html');
+					$body    = str_replace("[CODIGO]",$codigo,$body);
+					$body    = str_replace("[NOMBRE]",ucwords($nombre)." ".ucwords($apellido),$body);
+					$body    = str_replace("[URL]",$url,$body);
+					$body    = str_replace("[FECHA]",date("d / m / Y"),$body);
+
+					$headers = array('Content-Type: text/html; charset=UTF-8');
+
+					$mailResult = false;
+					$mailResult = wp_mail($email,'NO ESTAS SOLO', $body ,$headers);					
+
+					if( $mailResult ) {
+						$mailResult = "ok";
+					}else{
+						$mailResult = "error";
+					}
+
+					echo 4;
+
+				}else{
+					//va a sorteo					
+					echo 1;
+				}								
+
 			}
 			
 

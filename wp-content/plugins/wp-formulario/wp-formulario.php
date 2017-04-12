@@ -57,9 +57,12 @@ function export() {
 
 	$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ID');
 	$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Nombre');
-	$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Email');
-	$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Código');
-	$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Fecha');
+	$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Apellido');
+	$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Email');
+	$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Código');
+	$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Rut');
+	$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Teléfono');
+	$objPHPExcel->getActiveSheet()->setCellValue('H1', 'Fecha');
 
 	$row = 2;
 	foreach($entries as $key) {
@@ -68,14 +71,20 @@ function export() {
 		
 		$id = $key->id;
 		$nombre = $key->nombre;
+		$apellido = $key->apellido;
 		$email = $key->email;
 		$codigo = $key->codigo;
+		$rut = $key->rut;
+		$telefono = $key->telefono;
 		$fecha = $key->fecha;
 
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $id);
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $nombre);
+		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $apellido);
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $email);
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $codigo);
+		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $rut);
+		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $telefono);
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+=1, $row, $fecha);
 
 		$row++;

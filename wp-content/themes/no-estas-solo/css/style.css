@@ -88,7 +88,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 999999;
+    z-index: 6;
 }
 
 
@@ -443,3 +443,191 @@ footer p {
     padding: 10px;
     margin: 0;
 }
+
+
+/* OVERLAY Y MODALES */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  z-index: 100; }
+
+.overlay.active {
+  opacity: 1;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  pointer-events: all; }
+
+.yzmodal {
+  background-image: url(../img/bg-modal.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  color: white;
+  font-family: 'rajdhaniregular',sans;
+  font-size: 24px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 80rem;
+  height: auto;
+  min-height: 10rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 200;
+  padding: 1rem 4rem 4rem;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  pointer-events: none; }
+  .yzmodal img {
+    max-width: 100%; }
+  .yzmodal.active {
+    opacity: 1;
+    pointer-events: all;
+    -webkit-transition: 0.4s all;
+    transition: 0.4s all; }
+  .yzmodal h1 {
+    font-size: 48px;
+    font-family: 'rajdhanibold';
+    text-transform: uppercase; }
+  .yzmodal h2 {
+    font-size: 36px;
+    font-family: 'rajdhanibold';
+    text-transform: uppercase; }
+  .yzmodal p {
+    text-transform: uppercase; }
+
+.fecha-validacion {
+  padding-bottom: 2rem; }
+  .fecha-validacion img {
+    display: none; }
+  .fecha-validacion h1, .fecha-validacion p {
+    display: inline; }
+  .fecha-validacion.invalid img {
+    display: inline-block; }
+  .fecha-validacion.invalid h1, .fecha-validacion.invalid p {
+    display: none; }
+
+.fecha-nacimiento-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .fecha-nacimiento-input input {
+    margin: 0 .5rem;
+    background: #363636;
+    padding: .5rem 1rem; }
+  .fecha-nacimiento-input input[name="day"], .fecha-nacimiento-input input[name="month"] {
+    width: 2em; }
+  .fecha-nacimiento-input input[name="year"] {
+    width: 7.4rem; }
+
+input.redbutton {
+  margin-top: 4rem;
+  background: #f44236;
+  color: white;
+  font-family: 'rajdhanibold';
+  text-transform: uppercase;
+  font-size: 14px;
+  border: none;
+  padding: 0.5rem 6rem; }
+
+a.blackbutton {
+  margin-top: 4rem;
+  background: black;
+  color: white;
+  font-family: 'rajdhanibold';
+  text-transform: uppercase;
+  font-size: 14px;
+  border: none;
+  padding: 0.5rem 6rem; }
+  a.blackbutton:hover {
+    text-decoration: none; }
+
+span.codigo {
+  display: block;
+  font-size: 48px; }
+
+.correo-enviado {
+  width: 100%;
+  margin: 2rem auto;
+  max-width: 40rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .correo-enviado div {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    padding: 1rem; }
+  .correo-enviado p {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    font-size: 16px;
+    color: white; }
+
+/* Adicional Formulario */
+.form-line {
+  width: 100%;
+  display: block;
+  padding: 4px 0;
+  box-sizing: border-box; }
+  .form-line input {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'rajdhanibold';
+    color: #141414;
+    text-transform: uppercase;
+    margin-bottom: 4rem; }
+
+#boton-revisar {
+  background-color: #00bcd5;
+  background-image: url(../img/btn-revisar.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+  padding-left: 2rem;
+  color: white;
+  text-align: left; }
+
+.yz-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  @media screen and (max-width: 600px) {
+    .yz-row {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; } }
+
+.yz-col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  box-sizing: border-box; }
+  @media screen and (min-width: 600px) {
+    .yz-col {
+      padding: 0 1rem; }
+      .yz-col:first-child {
+        padding-left: 0; }
+      .yz-col:last-child {
+        padding-right: 0; } }

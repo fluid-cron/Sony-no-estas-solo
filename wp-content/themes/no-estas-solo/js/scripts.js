@@ -1,13 +1,49 @@
 var status_form = 0;
-jQuery(document).ready(function(jQuery) { 
+var s = 0;
+jQuery(document).ready(function(jQuery) {
+
+    $('#mayor-de-edad,.overlay').addClass('active');
+
+    $('.overlay').click(function(event) {      
+      if(s==1) {
+        $('.yzmodal,.overlay').removeClass('active');
+      }
+    })
+
+    $('#btn-fecha').click(function(event) { 
+      
+      var day = $("#day").val();
+      var month = $("#month").val();
+      var year = $("#year").val();
+
+      if( (day>=1 && day<=31 ) && (month>=1 && month<=12) && (year>=1917 && year<=1999 && year!=0) ) {
+        $('.fecha-validacion').removeClass('invalid');
+        $('#mayor-de-edad,.overlay').removeClass('active');
+        s = 1;
+      }else{        
+        $('.fecha-validacion').addClass('invalid');
+      }
+
+    })    
+
+    jQuery.validator.addMethod("rut", function(value, element) {
+      return this.optional(element) || jQuery.Rut.validar(value);
+    });
+
+    jQuery('#rut').Rut({
+      format_on: 'keyup'
+    });      
 
     jQuery("#form-codigos").validate({
         ignore :[],
         rules : {
-          'nombre' : { required:true },
-          'email'  : { required:true, email:true },
-          'codigo' : { required:true }
-        },     
+          'nombre'   : { required:true },
+          'email'    : { required:true, email:true },
+          'codigo'   : { required:true },
+          'apellido' : { required:true },
+          'rut'      : { required:true, rut:true },
+          'telefono' : { required:true }
+        },
         errorPlacement: function(error,element) {
           element.addClass('error');
         },
@@ -18,28 +54,35 @@ jQuery(document).ready(function(jQuery) {
 
             if( status_form==0 ) {
 
+                $("#boton-revisar").hide();
+
                 status_form = 1;            
                 
-                jQuery.post(ajax.url,jQuery("#form-codigos").serialize(),function(data) {            
+                jQuery.post(ajax.url,jQuery("#form-codigos").serialize(),function(data) {
 
                    if( data==1 ) {
-                    //1 ingresado con exito, codigo no estaba utilizado
+                    $("#boton-revisar").show();
+                    $('#sigue-participando,.overlay').addClass('active');
+                    //1 ingresado con exito, codigo no estaba utilizado participando!!!
                     jQuery("#msje-usado").hide();
                     jQuery("#msje-no-existe").hide();
                     jQuery("#msje-exito").fadeIn();
-                    jQuery("#nombre,#email,#codigo").val("");
+                    jQuery("#nombre,#email,#codigo,#apellido,#rut,#telefono").val("");
                     status_form=0;
                    }
 
                    if( data==2 ) {
+                    $("#boton-revisar").show();
                     //2 ya fue utilizado
                     jQuery("#msje-exito").hide();
                     jQuery("#msje-no-existe").hide();
                     jQuery("#msje-usado").fadeIn();
+                    jQuery("#codigo").val("");
                     status_form=0;
                    }
 
                    if( data==3 ) {
+                    $("#boton-revisar").show();
                     //3 el codigo ingresado no existe
                     jQuery("#msje-exito").hide();
                     jQuery("#msje-usado").hide();
@@ -47,6 +90,17 @@ jQuery(document).ready(function(jQuery) {
                     jQuery("#codigo").val("");
                     status_form=0;
                    }
+
+                   if( data==4 ) {
+                    $("#boton-revisar").show();
+                    $('#ganador,.overlay').addClass('active');
+                    //4 ingresado con exito, codigo no estaba utilizado ganador!!!
+                    jQuery("#msje-usado").hide();
+                    jQuery("#msje-no-existe").hide();
+                    jQuery("#msje-exito").fadeIn();
+                    jQuery("#nombre,#email,#codigo,#apellido,#rut,#telefono").val("");
+                    status_form=0;
+                   }                   
 
                 });                
 
@@ -56,13 +110,13 @@ jQuery(document).ready(function(jQuery) {
 
     });
 
-    jQuery("#btn-revisar").click(function() {
+    jQuery("#boton-revisar").click(function() {
     	jQuery("#form-codigos").submit();
     });
 
 });  
 
-var zoom = 16;
+var zoom = 14;
 
 (function($) {
 
@@ -301,6 +355,7 @@ function add_marker( $marker, map ) {
     map.markers.push( marker );
 
     // if marker contains HTML, add it to an infoWindow
+    /*
     if( $marker.html() )
     {
         // create info window
@@ -313,6 +368,7 @@ function add_marker( $marker, map ) {
             infowindow.open( map, marker );
         });
     }
+    */
 
 }
 
@@ -345,14 +401,29 @@ function center_map( map ) {
 var map = null;
 
 $(document).ready(function() {
+
+    $("#nombre,#apellido").on("keydown",function( event ){
+       var tecla = event.which;      
+             return !( (tecla > 47 && tecla < 58) || (tecla > 95 && tecla < 106) || tecla == 46 );
+    });
+    $("#telefono").on("keydown",function(event){
+       var tecla = event.which
+       return ( (tecla > 47 && tecla < 58) || (tecla > 95 && tecla < 106) || tecla == 46 || tecla == 8 || tecla == 9 ); 
+    });    
+
+    $("#day,#month,#year").keyup(function(event) {        
+        if(event.keyCode == 13){
+            $("#btn-fecha").click();
+        }
+    });
+
     $('.acf-map').each(function() {
 
         map = new_map( $(this) );        
-        /*
+        
         google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
             this.setZoom(zoom);
-        });        
-        */
+        });                
 
     });
 
