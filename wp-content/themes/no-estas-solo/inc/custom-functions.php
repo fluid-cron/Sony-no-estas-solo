@@ -35,7 +35,54 @@ function revisarCodigos() {
 			if( $codigos_cantidad>0 ) {
 
 				//codigo ingresado ya fue utilizado
-				echo 2;
+				$codigos_cantidad = 0;
+
+				$query = "SELECT codigo FROM {$wpdb->prefix}formulario WHERE codigo='$codigo' AND email='$email' ";
+				$codigos = $wpdb->get_results($query);
+
+				$codigos_cantidad = count($codigos);	
+
+				if( $codigos_cantidad>0 ) {
+					echo 2;
+				}else{
+
+					$codigos_cantidad = 0;			
+
+					$codigo_repetido = $codigo."-".$email;
+
+					$query = "SELECT codigo FROM {$wpdb->prefix}formulario WHERE codigo='$codigo_repetido' ";
+					$codigos = $wpdb->get_results($query);
+
+					$codigos_cantidad = count($codigos);
+
+					if( $codigos_cantidad>0 ) {
+						echo 2;
+					}else{
+
+						$wpdb->insert(
+							$wpdb->prefix.'formulario',
+							array(
+								'nombre'   => $nombre,				
+								'email'    => $email,				
+								'codigo'   => $codigo_repetido,
+								'apellido' => $apellido,
+								'rut'      => $rut,
+								'telefono' => $telefono
+							),
+							array(
+								'%s',
+								'%s',
+								'%s',
+								'%s',
+								'%s',
+								'%s'
+							)
+						);	
+
+						echo 1;
+
+					}	
+				}		
 
 			}else{
 

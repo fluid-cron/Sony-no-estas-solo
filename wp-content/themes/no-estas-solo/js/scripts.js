@@ -2,7 +2,7 @@ var status_form = 0;
 var s = 0;
 jQuery(document).ready(function(jQuery) {
 
-    $('#mayor-de-edad,.overlay').addClass('active');
+    //$('#mayor-de-edad,.overlay').addClass('active');
 
     $('.overlay').click(function(event) {      
       if(s==1) {
